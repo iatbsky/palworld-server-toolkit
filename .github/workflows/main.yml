@@ -15,8 +15,8 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install palworld-server-toolkit
-      run: pip3 install palworld-server-toolkit
+    - name: Install packages
+      run: pip3 install palworld-server-toolkit cx_Freeze
 
     - name: Copy palworld-save-tools
       run: git clone https://github.com/cheahjs/palworld-save-tools save_tools
