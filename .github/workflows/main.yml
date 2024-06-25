@@ -37,5 +37,7 @@ jobs:
     - name: Upload editor.exe
       uses: actions/upload-artifact@v3
       with:
-        name: editor-exe
-        path: build/exe.win32/editor.exe
+        name: editor
+        path: | 
+          build/exe.win32/editor.exe     
+          build/exe.win32/resources/
