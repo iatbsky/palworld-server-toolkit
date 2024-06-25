@@ -8,10 +8,10 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python
       with:
         python-version: '3.x'
 
@@ -35,7 +35,7 @@ jobs:
       run: python CxFreezeCompile.py build
 
     - name: Upload editor.exe
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact
       with:
         name: editor
         path: | 
