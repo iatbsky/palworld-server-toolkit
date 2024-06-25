@@ -12,3 +12,4 @@ fonttools~=4.48.1
 matplotlib~=3.8.2
 msgpack~=1.0.7
 cityhash
+cx_Freeze
