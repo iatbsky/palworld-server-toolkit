@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -15,18 +15,21 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install packages
-      run: pip3 install palworld-server-toolkit cx_Freeze
+    - name: Install dependencies from requirements.txt
+      run: pip install -r requirements.txt
+
+    - name: Install palworld-server-toolkit
+      run: pip install palworld-server-toolkit
 
     - name: Copy palworld-save-tools
       run: git clone https://github.com/cheahjs/palworld-save-tools save_tools
 
     - name: Copy PalEdit
       run: |
-        mkdir -p pal_edit
+        mkdir pal_edit
         git clone https://github.com/EternalWraith/PalEdit pal_edit
-        mkdir -p palworld_server_toolkit/PalEdit
-        cp -r pal_edit/palworld_pal_edit/resources palworld_server_toolkit/PalEdit
+        mkdir palworld_server_toolkit/PalEdit
+        xcopy pal_edit\palworld_pal_edit\resources palworld_server_toolkit\PalEdit /E /I /H /Y
 
     - name: Run CxFreezeCompile
       run: python CxFreezeCompile.py build
