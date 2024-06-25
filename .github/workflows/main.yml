@@ -1,0 +1,38 @@
+name: PalWorld Server Toolkit CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install palworld-server-toolkit
+      run: pip3 install palworld-server-toolkit
+
+    - name: Copy palworld-save-tools
+      run: git clone https://github.com/cheahjs/palworld-save-tools save_tools
+
+    - name: Copy PalEdit
+      run: |
+        mkdir -p pal_edit
+        git clone https://github.com/EternalWraith/PalEdit pal_edit
+        mkdir -p palworld_server_toolkit/PalEdit
+        cp -r pal_edit/palworld_pal_edit/resources palworld_server_toolkit/PalEdit
+
+    - name: Run CxFreezeCompile
+      run: python CxFreezeCompile.py build
+
+    - name: Upload editor.exe
+      uses: actions/upload-artifact@v3
+      with:
+        name: editor-exe
+        path: build/exe.win32/editor.exe
