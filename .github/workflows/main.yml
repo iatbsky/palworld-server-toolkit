@@ -29,7 +29,7 @@ jobs:
         mkdir pal_edit
         git clone https://github.com/EternalWraith/PalEdit pal_edit
         mkdir palworld_server_toolkit/PalEdit
-        xcopy pal_edit\palworld_pal_edit\resources palworld_server_toolkit\PalEdit /E /I /H /Y
+        xcopy pal_edit\\palworld_pal_edit\\resources palworld_server_toolkit\\PalEdit\\resources /E /I /H /Y
 
     - name: Run CxFreezeCompile
       run: python CxFreezeCompile.py build
